@@ -72,6 +72,8 @@ meu-app-react/
 └── vite.config.ts
 ```
 
+As modificações abaixo serão realizadas em `meu-app-react/src/App.tsx` e `meu-app-react/src/App.css`.
+
 ## O que é React?
 
 React é uma biblioteca JavaScript para construir interfaces de usuário. Você constrói interfaces complexas a partir de pequenos e isolados pedaços de código chamados "componentes".
@@ -146,7 +148,7 @@ const MyButton = () => {
 Agora você pode aninhar `MyButton` em outro componente:
 
 ```tsx
-const MyApp = () => {
+const App = () => {
   return (
     <div>
       <h1>Bem-vindo ao meu app</h1>
@@ -155,7 +157,7 @@ const MyApp = () => {
   );
 };
 
-export default MyApp;
+export default App;
 ```
 
 Note que `<MyButton />` começa com letra maiúscula. É assim que você reconhece um componente React. Nomes de componentes React sempre devem começar com letra maiúscula, enquanto tags HTML devem ser minúsculas.
@@ -362,7 +364,7 @@ Para fazer ambos os componentes `MyButton` exibirem o mesmo `count` e atualizare
 ```tsx
 import { useState } from 'react';
 
-const MyApp = () => {
+const App = () => {
   const [count, setCount] = useState(0);
 
   const handleClick = () => {
@@ -386,10 +388,10 @@ const MyButton = ({ count, onClick }: { count: number; onClick: () => void }) =>
   );
 };
 
-export default MyApp;
+export default App;
 ```
 
-A informação que você passa para baixo dessa forma é chamada *props*. Agora o componente `MyApp` contém o state `count` e o manipulador de evento `handleClick`, e *passa ambos para baixo como props* para cada um dos botões.
+A informação que você passa para baixo dessa forma é chamada *props*. Agora o componente `App` contém o state `count` e o manipulador de evento `handleClick`, e *passa ambos para baixo como props* para cada um dos botões.
 
 ## Próximos Passos
 
