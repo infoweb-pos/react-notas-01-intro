@@ -136,24 +136,26 @@ const ShoppingList = ({ name }: { name: string }) => {
 Componentes React são funções JavaScript que retornam markup. Eles devem começar com letra maiúscula:
 
 ```tsx
-function MyButton() {
+const MyButton = () => {
   return (
     <button>Eu sou um botão</button>
   );
-}
+};
 ```
 
 Agora você pode aninhar `MyButton` em outro componente:
 
 ```tsx
-export default function MyApp() {
+const MyApp = () => {
   return (
     <div>
       <h1>Bem-vindo ao meu app</h1>
       <MyButton />
     </div>
   );
-}
+};
+
+export default MyApp;
 ```
 
 Note que `<MyButton />` começa com letra maiúscula. É assim que você reconhece um componente React. Nomes de componentes React sempre devem começar com letra maiúscula, enquanto tags HTML devem ser minúsculas.
@@ -165,14 +167,14 @@ A sintaxe de markup que você viu acima é chamada *JSX*. É opcional, mas a mai
 JSX é mais rígido que HTML. Você deve fechar tags como `<br />`. Seu componente também não pode retornar múltiplas tags JSX. Você deve envolvê-las em um parent compartilhado, como `<div>...</div>` ou um wrapper vazio `<>...</>`:
 
 ```tsx
-function AboutPage() {
+const AboutPage = () => {
   return (
     <>
       <h1>Sobre</h1>
       <p>Olá.<br />Como você está?</p>
     </>
   );
-}
+};
 ```
 
 ## Adicionando Estilos
@@ -207,7 +209,7 @@ const user = {
   imageSize: 90,
 };
 
-export default function Profile() {
+const Profile = () => {
   return (
     <>
       <h1>{user.name}</h1>
@@ -222,7 +224,9 @@ export default function Profile() {
       />
     </>
   );
-}
+};
+
+export default Profile;
 ```
 
 ## Renderização Condicional
@@ -296,17 +300,17 @@ Observe como `<li>` tem um atributo `key`. Para cada item em uma lista, você de
 Você pode responder a eventos declarando funções *manipuladoras de evento* dentro de seus componentes:
 
 ```tsx
-function MyButton() {
-  function handleClick() {
+const MyButton = () => {
+  const handleClick = () => {
     alert('Você clicou em mim!');
-  }
+  };
 
   return (
     <button onClick={handleClick}>
       Clique em mim
     </button>
   );
-}
+};
 ```
 
 Observe como `onClick={handleClick}` não tem parênteses no final! Não *chame* a função manipuladora de evento: você só precisa *passá-la para baixo*. React chamará seu manipulador de evento quando o usuário clicar no botão.
@@ -324,19 +328,19 @@ import { useState } from 'react';
 Agora você pode declarar uma *variável de state* dentro do seu componente:
 
 ```tsx
-function MyButton() {
+const MyButton = () => {
   const [count, setCount] = useState(0);
   
-  function handleClick() {
+  const handleClick = () => {
     setCount(count + 1);
-  }
+  };
 
   return (
     <button onClick={handleClick}>
       Clicado {count} vezes
     </button>
   );
-}
+};
 ```
 
 Você obtém duas coisas de `useState`: o state atual (`count`) e a função que permite atualizá-lo (`setCount`). Você pode nomeá-los como quiser, mas a convenção é escrever `[something, setSomething]`.
@@ -358,12 +362,12 @@ Para fazer ambos os componentes `MyButton` exibirem o mesmo `count` e atualizare
 ```tsx
 import { useState } from 'react';
 
-export default function MyApp() {
+const MyApp = () => {
   const [count, setCount] = useState(0);
 
-  function handleClick() {
+  const handleClick = () => {
     setCount(count + 1);
-  }
+  };
 
   return (
     <div>
@@ -372,15 +376,17 @@ export default function MyApp() {
       <MyButton count={count} onClick={handleClick} />
     </div>
   );
-}
+};
 
-function MyButton({ count, onClick }: { count: number; onClick: () => void }) {
+const MyButton = ({ count, onClick }: { count: number; onClick: () => void }) => {
   return (
     <button onClick={onClick}>
       Clicado {count} vezes
     </button>
   );
-}
+};
+
+export default MyApp;
 ```
 
 A informação que você passa para baixo dessa forma é chamada *props*. Agora o componente `MyApp` contém o state `count` e o manipulador de evento `handleClick`, e *passa ambos para baixo como props* para cada um dos botões.
