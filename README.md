@@ -114,6 +114,23 @@ function ShoppingList({ name }: { name: string }) {
 }
 ```
 
+A mesma funcionalidade pode ser escrita usando arrow function:
+
+```tsx
+const ShoppingList = ({ name }: { name: string }) => {
+  return (
+    <div className="shopping-list">
+      <h1>Lista de Compras para {name}</h1>
+      <ul>
+        <li>Instagram</li>
+        <li>WhatsApp</li>
+        <li>Oculus</li>
+      </ul>
+    </div>
+  );
+};
+```
+
 ## Criando e Aninhando Componentes
 
 Componentes React são funções JavaScript que retornam markup. Eles devem começar com letra maiúscula:
